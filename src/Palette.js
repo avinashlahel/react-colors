@@ -7,23 +7,30 @@ class Palette extends Component {
 
     constructor(props){
         super(props);
-        this.state = {level: 500};
+        this.state = {level: 500, format: 'hex'};
         this.handleChange = this.handleChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
     }
 
     handleChange(level){
         this.setState({level});
     }
 
+    handleSelectChange(val) {
+        this.setState({format: val});
+    }
+
     render() {
         let {palette} = this.props;
-        let {level} = this.state;
-        let colorBox = palette.colors[level].map(color => <ColorBox background={color.hex} name={color.name}/>);
+        let {level,format} = this.state;
+        let colorBox = palette.colors[level].map(color => <ColorBox background={color[format]} name={color.name}/>);
 
         return (
             <div>
                 <div className="Pallete">
-                    <Navbar level={level} handleChange={this.handleChange}/>
+                    <Navbar level={level}
+                            handleChange={this.handleChange}
+                            handleSelectChange={this.handleSelectChange}/>
                     <div className="Pallete-colors">{colorBox}</div>
                     {/*Footer goes here*/}
                 </div>
