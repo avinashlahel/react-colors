@@ -23,7 +23,7 @@ class Palette extends Component {
     render() {
         let {palette} = this.props;
         let {level,format} = this.state;
-        let colorBox = palette.colors[level].map(color => <ColorBox background={color[format]} name={color.name}/>);
+        let colorBox = palette.colors[level].map(color => <ColorBox background={color[format]} name={color.name} key={color.id}/>);
 
         return (
             <div>
@@ -32,7 +32,12 @@ class Palette extends Component {
                             handleChange={this.handleChange}
                             handleSelectChange={this.handleSelectChange}/>
                     <div className="Pallete-colors">{colorBox}</div>
-                    {/*Footer goes here*/}
+                    <footer className="Palette-footer">
+                        {palette.paletteName}
+                        <span className="emoji">
+                            {palette.emoji}
+                        </span>
+                    </footer>
                 </div>
             </div>
         );
