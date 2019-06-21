@@ -5,14 +5,14 @@ import Navbar from "./Navbar";
 
 class Palette extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {level: 500, format: 'hex'};
         this.handleChange = this.handleChange.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
     }
 
-    handleChange(level){
+    handleChange(level) {
         this.setState({level});
     }
 
@@ -22,8 +22,15 @@ class Palette extends Component {
 
     render() {
         let {palette} = this.props;
-        let {level,format} = this.state;
-        let colorBox = palette.colors[level].map(color => <ColorBox background={color[format]} name={color.name} key={color.id}/>);
+        let {level, format} = this.state;
+        let colorBox = palette.colors[level]
+            .map(color => <ColorBox
+                background={color[format]}
+                name={color.name}
+                key={color.id}
+                id={color.id}
+                paletteId={palette.id}
+                showLink={true}/>);
 
         return (
             <div>
