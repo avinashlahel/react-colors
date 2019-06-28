@@ -15,6 +15,14 @@
     background-color: black;
 }
 
+.ColorBox .light-text {
+    color: white;
+}
+
+.ColorBox .dark-text {
+    color: rgba(0,0,0,0.5);
+}
+
 
 .copy-button, .back-button {
     position: absolute;
