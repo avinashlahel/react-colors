@@ -3,6 +3,29 @@ import ColorBox from "./ColorBox";
 import './Pallete.css';
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter"
+import {withStyles} from "@material-ui/styles";
+
+const styles = {
+    Pallete : {
+        height: "100vh"
+    },
+    PalleteColors: {
+        height: "90%"
+    },
+    PaletteFooter: {
+        height: "4vh",
+        background: "white",
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        fontWeight: "bold"
+    },
+    emoji: {
+        margin: "0 1rem",
+        fontSize: "1.5rem",
+    }
+
+}
 
 class Palette extends Component {
 
@@ -22,7 +45,7 @@ class Palette extends Component {
     }
 
     render() {
-        let {palette} = this.props;
+        let {palette,classes} = this.props;
         let {level, format} = this.state;
         let colorBox = palette.colors[level]
             .map(color => <ColorBox
@@ -31,21 +54,21 @@ class Palette extends Component {
                 key={color.id}
                 id={color.id}
                 paletteId={palette.id}
-                showLink={true}/>);
+                showingFullPalette={true}/>);
 
         return (
             <div>
-                <div className="Pallete">
+                <div className={classes.Pallete}>
                     <Navbar level={level}
                             handleChange={this.handleChange}
                             handleSelectChange={this.handleSelectChange}
                             showSlider={true}/>
-                    <div className="Pallete-colors">{colorBox}</div>
-                    <PaletteFooter palette={this.props.palette} />
+                    <div className={classes.PalleteColors}>{colorBox}</div>
+                    <PaletteFooter palette={this.props.palette} classes={classes}/>
                 </div>
             </div>
         );
     }
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
